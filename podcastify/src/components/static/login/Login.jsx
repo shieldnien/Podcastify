@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import db from "../../envs/LoginDB";
-import { useNavigate } from "react-router-dom";
+//import { useNavigate } from "react-router-dom";
 
 export default function Login() {
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
 
-  const navigate = useNavigate();
+  //const navigate = useNavigate();
 
   const handleChangeUser = (e) => {
     setUser(e.target.value);
@@ -36,7 +36,8 @@ export default function Login() {
     ) {
       sessionStorage.setItem("usuario", stringUser);
       sessionStorage.setItem("token", generateToken(user));
-      navigate("/dashboard");
+      // navigate("/", { replace: true});
+      window.location.href = '/'
     }
   };
 

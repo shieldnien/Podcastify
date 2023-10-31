@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 body {
+  font-family: 'Roboto', sans-serif;
   background-image: url('./assets/Wave.svg');
   background-size: auto;
 }

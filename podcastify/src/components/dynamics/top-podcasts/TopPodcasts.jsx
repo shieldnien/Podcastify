@@ -42,7 +42,7 @@ export default function TopPodcasts() {
   return (
     <>
       <section>
-        <div className="m-4 grid lg:grid-cols-3 grid-cols-1 gap-8">
+        <div className="m-4 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8">
           {Object.values(data).map((o) => {
             return (
               <>
