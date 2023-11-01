@@ -1,13 +1,12 @@
 import React from "react";
 
 export default function Dashboard() {
-  const token = sessionStorage.getItem("token");
-  const parsedUser = JSON.parse(sessionStorage.getItem("usuario"));
+  const user = document.cookie.split("=")[1];
 
-  return token && parsedUser ? (
+  return user ? (
     <>
       <div className="w-full text-center">
-        <p className="text-2xl font-bold">Bienvenido, {parsedUser.user.toUpperCase()}</p>
+        <p className="text-2xl font-bold">Bienvenido, {user.toUpperCase()}</p>
       </div>
     </>
   ) : (

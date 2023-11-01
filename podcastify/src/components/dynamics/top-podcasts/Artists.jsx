@@ -14,13 +14,13 @@ export default function Artists({ index, ch }) {
           ></img>
         </picture>
         <div className="px-4 py-2">
-          <div className="text-center p-2 border-t-2 border-gray-200">
+          <div className="border-t-2 text-center border-gray-200">
             <Link to={`/podcasts/${ch.id.attributes["im:id"]}`} className="m-4">
               <div>
-                <span className="m-fit text-3xl font-extrabold">
+                <span className="text-3xl font-extrabold">
                   {ch.title.label.split("-")[0]}
                 </span>
-                <span className="m-4 block text-sm text-gray-400 italic">
+                <span className="mt-4 block text-sm text-gray-400 italic">
                   Author: {ch.title.label.split("-")[1]}
                 </span>
               </div>

@@ -37,9 +37,9 @@ export default function Login() {
       user === userFromDB.user &&
       pass === userFromDB.pass
     ) {
-      date.setTime(date.setTime() + 1 * 24 * 60 * 60 * 1000);
+      date.setTime(date.getTime() + 1 * 24 * 60 * 60 * 1000);
 
-      document.cookie = stringUser.concat(date.toTimeString() + ";path=/");
+      document.cookie = stringUser.concat(date.toUTCString() + ";path=/");
 
       //sessionStorage.setItem("usuario", stringUser);
       //sessionStorage.setItem("token", generateToken(user));
