@@ -1,3 +1,4 @@
+import 'animate.css'
 import axios from "axios";
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import ls from "localstorage-slim";
@@ -42,14 +43,14 @@ export default function TopPodcasts() {
   return (
     <>
       <section>
-        <div className="m-4 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8">
+        <div className="m-4 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 ">
           {Object.values(data).map((o) => {
             return (
               <>
                 {Object.values(o.entry).map((ch, index) => {
                   return (
                     <>
-                      <Suspense fallback={<p>Cargando artista...</p>}>
+                      <Suspense fallback={<p></p>}>
                         <Artists index={index} ch={ch} />
                       </Suspense>
                     </>

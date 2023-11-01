@@ -29,7 +29,7 @@ export default function NavPrivada() {
             </Link>
           </div>
         </div>
-        <div className="fixed bottom-0 bg-gray-400 p-2 m-2">
+        <div className="fixed bottom-0 bg-gray-400 p-2 m-2 z-10">
           <ul className="text-center">
             Panel de administración
             <li>

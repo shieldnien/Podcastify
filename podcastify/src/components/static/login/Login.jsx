@@ -6,6 +6,14 @@ export default function Login() {
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
 
+  const userFromDB = db.filter((unit) => user === unit.user)[0];
+  console.log(userFromDB);
+
+  const date = new Date();
+
+  //const stringUser = JSON.stringify({ user: `${user}`, pass: `${pass}` });
+  const stringUser = `email=${user}; expires=`;
+
   //const navigate = useNavigate();
 
   const handleChangeUser = (e) => {
@@ -16,28 +24,27 @@ export default function Login() {
     setPass(e.target.value);
   };
 
-  const generateToken = (usuario) => {
+  /*   const generateToken = (usuario) => {
     const token = usuario.length * Math.random() * 1000000;
     return token;
-  };
+  }; */
 
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const userFromDB = db.filter((unit) => user === unit.user)[0];
-    console.log(userFromDB);
-
-    const stringUser = JSON.stringify({ user: `${user}`, pass: `${pass}` });
 
     if (
       userFromDB !== undefined &&
       user === userFromDB.user &&
       pass === userFromDB.pass
     ) {
-      sessionStorage.setItem("usuario", stringUser);
-      sessionStorage.setItem("token", generateToken(user));
+      date.setTime(date.setTime() + 1 * 24 * 60 * 60 * 1000);
+
+      document.cookie = stringUser.concat(date.toTimeString() + ";path=/");
+
+      //sessionStorage.setItem("usuario", stringUser);
+      //sessionStorage.setItem("token", generateToken(user));
       // navigate("/", { replace: true});
-      window.location.href = '/'
+      window.location.href = "/";
     }
   };
 
