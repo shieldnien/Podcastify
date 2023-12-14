@@ -5,7 +5,7 @@ export default function Comments() {
     <>
       <section>
         <article>
-          <div className="flex flex-col">
+          <div className="flex flex-col mb-12 animate__animated animate__fadeInUp animate__faster animate__delay-1s">
             {Object.values(db).map((o) => {
               return (
                 <>

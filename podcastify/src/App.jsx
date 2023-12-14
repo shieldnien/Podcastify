@@ -16,10 +16,13 @@ import NavPrivada from "./components/layout/header/nav/privado/NavPrivada";
 function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
 
-  const user = document.cookie.split("=")[1];
+  //const user = document.cookie.split("=")[1];
+  const user = sessionStorage.getItem('user')
+  const token = sessionStorage.getItem('token')
+
 
   useEffect(() => {
-    if (!user) {
+    if (!user && !token) {
       return;
     } else {
       setLoggedIn(true);

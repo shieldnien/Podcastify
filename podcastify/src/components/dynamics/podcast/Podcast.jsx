@@ -46,7 +46,7 @@ export default function Podcast() {
   return (
     <>
       <div className="m-2">
-        <section className="grid grid-cols-2">
+        <section className="grid grid-cols-1 md:grid-cols-2">
           {Object.values(data).map((o) => {
             return (
               <>

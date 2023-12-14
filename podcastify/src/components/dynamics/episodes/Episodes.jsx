@@ -42,7 +42,7 @@ export default function Episodes(props) {
 
   return (
     <>
-      <div className="h-fit text-center mx-auto rounded-lg overflow-hidden shadow-lg bg-gray-100">
+      <div className="h-fit text-center mx-auto mb-12 rounded-lg shadow-lg bg-gray-100 animate__animated animate__fadeInLeft">
         <figure>
           <img
             className="w-fit m-auto rounded-full p-2"
@@ -55,29 +55,35 @@ export default function Episodes(props) {
         </p>
         <p className="p-2 m-4">{props.summary}</p>
       </div>
-      <div className="flex flex-col">
-        <div className="text-center border m-2 border-gray-300 bg-gray-100 rounded overflow-hidden shadow-lg">
+      <div className="h-full flex flex-col max-h-screen bg-gray-500 bg-opacity-50">
+        <div className="text-center border m-2 border-gray-300 bg-gray-100 rounded shadow-lg">
           <h1 className="text-xl m-2">
             Episodios: <span className="font-bold">{data.resultCount}</span>
           </h1>
         </div>
-        <div className="rounded-lg h-fit text-center m-2 text-white text-xl font-light">
+        <div className="rounded-lg h-5/6  overflow-auto overscroll-contain hover:overflow-y-scroll m-2 text-white text-xl font-light animate__animated animate__fadeInRight animate__delay-1s">
           {Object.values(data).map((o) => {
             return (
               <>
-                {Object.values(o).map((ch,index) => {
+              <ul>
+              {Object.values(o).map((ch,index) => {
                   return (
                     <>
-                      <div key={index} className="m-2 p-2 shadow-lg bg-blue-500 rounded-lg border border-black">
-                        <Link
+                    <li className="p-2 m-2 overflow-hidden">
+                    <Link
+                          key={index}
+                          className="whitespace-nowrap p-2 m-2 shadow-lg bg-blue-500 rounded-lg border border-black visited:bg-green-900"
                           to={`/podcasts/${props.id}/episode/${ch.trackId}`}
                         >
                           {ch.trackName}
                         </Link>
-                      </div>
+                    </li>
+                        
                     </>
                   );
                 })}
+              </ul>
+                
               </>
             );
           })}

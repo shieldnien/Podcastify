@@ -1,20 +1,9 @@
 import React, { useState } from "react";
-import db from "../../envs/LoginDB";
-//import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Login() {
   const [user, setUser] = useState("");
   const [pass, setPass] = useState("");
-
-  const userFromDB = db.filter((unit) => user === unit.user)[0];
-  console.log(userFromDB);
-
-  const date = new Date();
-
-  //const stringUser = JSON.stringify({ user: `${user}`, pass: `${pass}` });
-  const stringUser = `email=${user}; expires=`;
-
-  //const navigate = useNavigate();
 
   const handleChangeUser = (e) => {
     setUser(e.target.value);
@@ -24,28 +13,26 @@ export default function Login() {
     setPass(e.target.value);
   };
 
-  /*   const generateToken = (usuario) => {
-    const token = usuario.length * Math.random() * 1000000;
-    return token;
-  }; */
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (
-      userFromDB !== undefined &&
-      user === userFromDB.user &&
-      pass === userFromDB.pass
-    ) {
-      date.setTime(date.getTime() + 1 * 24 * 60 * 60 * 1000);
-
-      document.cookie = stringUser.concat(date.toUTCString() + ";path=/");
-
-      //sessionStorage.setItem("usuario", stringUser);
-      //sessionStorage.setItem("token", generateToken(user));
-      // navigate("/", { replace: true});
-      window.location.href = "/";
-    }
+    axios
+      .post("http://localhost:8001/login", {
+        username: user,
+        password: pass,
+      })
+      .then(
+        (res) => {
+          if (res.data.token) {
+            sessionStorage.setItem("user", user);
+            sessionStorage.setItem("token", res.data.token);
+            window.location.href = "/";
+          }
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
   };
 
   return (

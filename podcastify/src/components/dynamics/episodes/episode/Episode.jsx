@@ -43,22 +43,29 @@ export default function Episode() {
     }
   }, [URL_API, LOCALSTORAGE_EXPIRATION_TIME, id, episodeid]);
 
+  const getURLonClick = (id,url) => {
+    ls.set(`idCurrentPlay`, id)
+    ls.set(`currentPlay`, url)
+    console.log(
+      ls.get(`idCurrentPlay`),
+      ls.get(`currentPlay`),
+    )
+  };
 
   return (
     <>
-      <div className="grid sm:grid-cols-2 grid-cols-1">
+      <div className="grid sm:grid-cols-2 mb-12 grid-cols-1">
         {Object.values(data).map((o) => {
-          console.log(o);
           return (
             <>
               {Object.values(o).map((ch) => {
                 if (ch.trackId === parseInt(episodeid)) {
                   return (
                     <>
-                      <div className="max-w-sm text-center h-fit p-4 m-2 bg-gray-100 rounded overflow-hidden shadow-lg">
+                      <div className="h-fit mx-4 mt-2 text-center rounded-lg overflow-hidden shadow-lg bg-gray-100 animate__animated animate__fadeInLeft">
                         <figure>
                           <img
-                            className="p-2 w-full rounded-full"
+                            className="w-fit m-auto rounded-full p-2"
                             src={ch.artworkUrl600}
                             alt="Foto de portada del podcast"
                           ></img>
@@ -72,15 +79,19 @@ export default function Episode() {
                         <p className="p-2 block font-bold text-lg">
                           {ch.trackName}
                         </p>
-                        <p className="p-4 border-t border-gray-300">
+                        <p className="px-6 py-2 border-t border-gray-300">
                           {ch.description}
                         </p>
-                        <audio
-                          className="p-2 w-full border-t border-gray-300"
+                        {/* <audio
+                          className="px-4 py-2 w-full border-t border-gray-300"
                           src={ch.episodeUrl}
+                          onClick={getURLonClick(ch.episodeUrl)}
                           controls="controls"
                           preload="none"
-                        ></audio>
+                        ></audio> */}
+                        <button
+                          onClick={() => getURLonClick(ch.trackId, ch.episodeUrl)}
+                        >Click!</button>
                       </div>
                     </>
                   );

@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export default function Artists({ index, ch }) {
   return (
     <>
-      <div key={index} className="m-4 rounded-lg overflow-hidden shadow-lg bg-gray-100 animate__animated animate__slideInUp animate__fast">
+      <div key={index} className="m-4 rounded-lg overflow-hidden shadow-lg bg-gray-100">
         <picture className="m-2">
           <img
             src={ch["im:image"][2].label}

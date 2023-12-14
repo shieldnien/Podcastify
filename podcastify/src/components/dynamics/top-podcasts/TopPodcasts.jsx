@@ -1,9 +1,9 @@
-import 'animate.css'
+import "animate.css";
 import axios from "axios";
 import React, { useState, useEffect, lazy, Suspense } from "react";
 import ls from "localstorage-slim";
 
-const Artists = lazy(() => import ('./Artists'))
+const Artists = lazy(() => import("./Artists"));
 
 export default function TopPodcasts() {
   const [data, setData] = useState("");
@@ -33,7 +33,7 @@ export default function TopPodcasts() {
           }
         })
         .catch((err) => {
-          console.log("Error de axios: " + err);
+          console.err("Error de axios: " + err);
         });
     } else {
       setData(JSON.parse(ls.get("toppodcast")));
@@ -42,8 +42,8 @@ export default function TopPodcasts() {
 
   return (
     <>
-      <section>
-        <div className="m-4 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 ">
+      <section className="mb-12">
+        <div className="m-4 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 animate__animated animate__fadeInUp">
           {Object.values(data).map((o) => {
             return (
               <>
