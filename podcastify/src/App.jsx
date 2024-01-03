@@ -1,6 +1,8 @@
 import "./App.css";
+
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
 import Nav from "./components/layout/header/nav/Nav";
 import Home from "./components/static/home/Home";
 import Podcast from "./components/dynamics/podcast/Podcast";
@@ -16,13 +18,12 @@ import NavPrivada from "./components/layout/header/nav/privado/NavPrivada";
 function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
 
-  //const user = document.cookie.split("=")[1];
   const user = sessionStorage.getItem('user')
   const token = sessionStorage.getItem('token')
-
+  const rol = sessionStorage.getItem('rol');
 
   useEffect(() => {
-    if (!user && !token) {
+    if (!user && !token && !rol) {
       return;
     } else {
       setLoggedIn(true);
@@ -31,7 +32,8 @@ function App() {
 
   return (
     <>
-      {!isLoggedIn && (
+      {(!isLoggedIn ||
+      (rol === 'user')) && (
         <div className="overflow-y-scroll h-screen">
           <BrowserRouter>
             <Routes>
@@ -53,7 +55,10 @@ function App() {
           <Footer />
         </div>
       )}
-      {isLoggedIn && (
+      {isLoggedIn && 
+        (rol === 'su' || 
+        rol === 'admin' ||
+        rol === 'mod') && (
         <div className="overflow-y-scroll h-screen">
           <BrowserRouter>
             <Routes>

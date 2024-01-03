@@ -33,7 +33,7 @@ export default function TopPodcasts() {
           }
         })
         .catch((err) => {
-          console.err("Error de axios: " + err);
+          console.error("Error de axios: " + err);
         });
     } else {
       setData(JSON.parse(ls.get("toppodcast")));

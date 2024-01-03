@@ -7,6 +7,7 @@ export default function NavPrivada() {
     e.preventDefault()
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("user");
+    sessionStorage.removeItem("rol")
     //document.cookie += ';expires=Thu, 01 Jan 1970 00:00:01 GMT;';
     
     window.location.href = '/'

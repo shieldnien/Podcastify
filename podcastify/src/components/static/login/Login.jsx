@@ -26,6 +26,7 @@ export default function Login() {
           if (res.data.token) {
             sessionStorage.setItem("user", user);
             sessionStorage.setItem("token", res.data.token);
+            sessionStorage.setItem("rol", res.data.rol)
             window.location.href = "/";
           }
         },
