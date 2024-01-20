@@ -1,16 +1,15 @@
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 
-export default function NavPrivada() {
-
+export default function NavPrivada({ rol }) {
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     sessionStorage.removeItem("token");
     sessionStorage.removeItem("user");
-    sessionStorage.removeItem("rol")
+    sessionStorage.removeItem("rol"); 
     //document.cookie += ';expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-    
-    window.location.href = '/'
+
+    window.location.href = "/";
   };
 
   return (
@@ -33,27 +32,38 @@ export default function NavPrivada() {
               Comentarios
             </Link>
           </div>
-        </div>
-        <div className="fixed bottom-0 bg-gray-400 p-2 m-2 z-10">
-          <ul className="text-center">
-            Panel de administración
-            <li>
-              <Link to="/dashboard" className="underline">
-                Ir a dashboard
-              </Link>
-            </li>
-            <li>
-              <Link to="/profile" className="underline">
-                Ir a perfil
-              </Link>
-            </li>
-            <li>
+          {(rol === "mod" || rol === "user") && (
+            <div>
               <form onSubmit={handleSubmit}>
-                <button className="underline">Logout</button>
+                <button className="font-semibold text-lg text-white tracking-tight">
+                  Logout
+                </button>
               </form>
-            </li>
-          </ul>
+            </div>
+          )}
         </div>
+        {(rol === "su" || rol === "admin") && (
+          <div className="fixed bottom-0 bg-gray-400 p-2 m-2 z-10">
+            <ul className="text-center">
+              Panel de administración
+              <li>
+                <Link to="/dashboard" className="underline">
+                  Ir a dashboard
+                </Link>
+              </li>
+              <li>
+                <Link to="/profile" className="underline">
+                  Ir a perfil
+                </Link>
+              </li>
+              <li>
+                <form onSubmit={handleSubmit}>
+                  <button className="underline">Logout</button>
+                </form>
+              </li>
+            </ul>
+          </div>
+        )}
       </nav>
 
       <Outlet />

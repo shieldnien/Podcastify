@@ -42,7 +42,7 @@ export default function TopPodcasts() {
 
   return (
     <>
-      <section className="mb-12">
+      <section className="mb-20">
         <div className="m-4 grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-8 animate__animated animate__fadeInUp">
           {Object.values(data).map((o) => {
             return (

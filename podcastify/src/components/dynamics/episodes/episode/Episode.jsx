@@ -43,13 +43,10 @@ export default function Episode() {
     }
   }, [URL_API, LOCALSTORAGE_EXPIRATION_TIME, id, episodeid]);
 
-  const getURLonClick = (id,url) => {
-    ls.set(`idCurrentPlay`, id)
-    ls.set(`currentPlay`, url)
-    console.log(
-      ls.get(`idCurrentPlay`),
-      ls.get(`currentPlay`),
-    )
+  const getURLonClick = (id, url) => {
+    ls.set(`idCurrentPlay`, id);
+    ls.set(`currentPlay`, url);
+    console.log(ls.get(`idCurrentPlay`), ls.get(`currentPlay`));
   };
 
   return (
@@ -65,7 +62,7 @@ export default function Episode() {
                       <div className="h-fit mx-4 mt-2 text-center rounded-lg overflow-hidden shadow-lg bg-gray-100 animate__animated animate__fadeInLeft">
                         <figure>
                           <img
-                            className="w-fit m-auto rounded-full p-2"
+                            className="w-48 m-auto rounded-full p-2"
                             src={ch.artworkUrl600}
                             alt="Foto de portada del podcast"
                           ></img>
@@ -75,23 +72,23 @@ export default function Episode() {
                           <span>{ch.collectionName}</span>
                         </p>
                       </div>
-                      <div className="max-w-4xl m-2 h-fit bg-gray-100 rounded overflow-hidden shadow-lg">
+                      <div className="max-w-4xl h-5/6 md:h-full overflow-y-auto m-2 bg-gray-100 rounded overflow-hidden shadow-lg">
                         <p className="p-2 block font-bold text-lg">
                           {ch.trackName}
                         </p>
                         <p className="px-6 py-2 border-t border-gray-300">
                           {ch.description}
                         </p>
-                        {/* <audio
-                          className="px-4 py-2 w-full border-t border-gray-300"
-                          src={ch.episodeUrl}
-                          onClick={getURLonClick(ch.episodeUrl)}
-                          controls="controls"
-                          preload="none"
-                        ></audio> */}
-                        <button
-                          onClick={() => getURLonClick(ch.trackId, ch.episodeUrl)}
-                        >Click!</button>
+                        <div className="text-center">
+                          <button
+                            className="w-12 h-12 relative"
+                            onClick={() =>
+                              getURLonClick(ch.trackId, ch.episodeUrl)
+                            }
+                          >
+                            Click!
+                          </button>
+                        </div>
                       </div>
                     </>
                   );

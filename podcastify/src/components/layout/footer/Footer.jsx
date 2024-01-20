@@ -1,31 +1,29 @@
+import 'react-h5-audio-player/lib/styles.css';
+
 import React, { useState } from "react";
+
 import ls from "localstorage-slim";
+import AudioPlayer from "react-h5-audio-player";
 
 export default function Footer() {
   const [track, setTrack] = useState("");
-  const [trackId, setTrackId] = useState(0)
+  const [trackId, setTrackId] = useState(0);
 
-    const changeTrack = () => {
-      setTrackId(ls.get('idCurrentPlay'))
-      setTrack(ls.get('currentPlay'))
-    }
+  const changeTrack = () => {
+    setTrackId(ls.get("idCurrentPlay"));
+    setTrack(ls.get("currentPlay"));
+  };
 
   return (
     <>
       <div className="flex absolute bottom-0 w-full border-t border-gray-300">
-      <button
-      onClick={changeTrack}
-      >
-        Click!!
-      </button>
-        <audio
+        <button onClick={changeTrack}>Click!!</button>
+        <AudioPlayer
           key={trackId}
-          className="px-4 py-2 w-full"
           src={track}
-          controls="controls"
-          preload="none"      
-        >
-        </audio>
+          volume={0.3}
+          onPlay={(e) => console.log(e + "onplay!")}
+        ></AudioPlayer>
       </div>
     </>
   );

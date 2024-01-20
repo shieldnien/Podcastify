@@ -42,7 +42,7 @@ export default function Episodes(props) {
 
   return (
     <>
-      <div className="h-fit text-center mx-auto mb-12 rounded-lg shadow-lg bg-gray-100 animate__animated animate__fadeInLeft">
+      <div className="h-fit max-h-screen text-center mx-auto rounded-lg shadow-lg bg-gray-100 animate__animated animate__fadeInLeft">
         <figure>
           <img
             className="w-fit m-auto rounded-full p-2"
@@ -55,7 +55,7 @@ export default function Episodes(props) {
         </p>
         <p className="p-2 m-4">{props.summary}</p>
       </div>
-      <div className="h-full flex flex-col max-h-screen bg-gray-500 bg-opacity-50">
+      <div className="h-4/6 flex flex-col max-h-screen bg-gray-500 bg-opacity-50">
         <div className="text-center border m-2 border-gray-300 bg-gray-100 rounded shadow-lg">
           <h1 className="text-xl m-2">
             Episodios: <span className="font-bold">{data.resultCount}</span>
