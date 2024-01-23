@@ -2,6 +2,7 @@ import "./App.css";
 
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import video from './assets/loop.mp4';
 
 import Nav from "./components/layout/header/nav/Nav";
 import Home from "./components/static/home/Home";
@@ -33,6 +34,10 @@ function App() {
 
   return (
     <>
+    <video className="w-full"
+    autoPlay muted loop id="bg-video">
+      <source src={video} type="video/mp4"/>
+    </video>
       {!isLoggedIn && (
         <div className="overflow-y-scroll h-screen">
           <BrowserRouter>

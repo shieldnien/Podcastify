@@ -4,6 +4,12 @@
 
 body {
   font-family: 'Roboto', sans-serif;
-  background-image: url('./assets/Wave.svg');
+  background-color: black;
+  /* background-image: url('./assets/Wave.svg'); */
   background-size: auto;
+}
+
+#bg-video {
+  z-index: -1;
+  position:fixed;
 }

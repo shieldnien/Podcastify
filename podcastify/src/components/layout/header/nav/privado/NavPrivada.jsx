@@ -15,7 +15,7 @@ export default function NavPrivada({ rol }) {
   return (
     <>
       <nav>
-        <div className="flex items-center justify-between flex-wrap border-b-2 border-b-blue-950 bg-blue-600 p-6">
+        <div className="flex items-center justify-between flex-wrap backdrop-blur-sm bg-transparent p-6">
           <div className="flex items-center flex-shrink-0 mr-6">
             <Link
               to="/"

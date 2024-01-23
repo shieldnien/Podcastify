@@ -4,5 +4,5 @@ cd ./db-posts/
 start node server.js
 echo Arrancando el cliente (DEVMODE)...
 cd ../podcastify/ 
-start npm run dev
+start npm install && npm run dev
 
