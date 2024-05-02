@@ -18,7 +18,7 @@ export default function Login() {
 //`${process.env.REACT_URL_API}/login`
 //"http://localhost:8001/login"
     axios
-      .post(`${process.env.REACT_URL_API}/login`, {
+      .post("http://localhost:8001/login", {
         username: user,
         password: pass,
       })

@@ -1,7 +1,7 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ls from "localstorage-slim";
+import { fetchFromApi } from "../../../../utils/fetchFromApi";
 
 export default function Episode() {
   let { id } = useParams();
@@ -10,27 +10,24 @@ export default function Episode() {
   const [data, setData] = useState({});
 
   const LOCALSTORAGE_EXPIRATION_TIME = 60 * 60 * 24;
-  const URL_API = `https://api.allorigins.win/get?url=${encodeURIComponent(
-    `https://itunes.apple.com/lookup?id=${id}&media=podcast
-        &entity=podcastEpisode`
-  )}`;
+
+  console.log(id,episodeid)
 
   useEffect(() => {
     // Formato: episode - ID del artista - ID del episodio
     if (!ls.get(`episode-${id}-${episodeid}`)) {
-      axios
-        .get(URL_API, {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        })
+      fetchFromApi(
+        `get?url=${encodeURIComponent(
+          `https://itunes.apple.com/lookup?id=${id}&media=podcast
+            &entity=podcastEpisode`
+        )}`
+      )
         .then((res) => {
           try {
-            ls.set(`episode-${id}-${episodeid}`, res.data.contents, {
+            ls.set(`episode-${id}-${episodeid}`, res.contents, {
               ttl: LOCALSTORAGE_EXPIRATION_TIME,
             });
-            const parsedJson = JSON.parse(res.data.contents);
-            setData(parsedJson);
+            setData(res.contents);
           } catch (err) {
             console.error("Error al parsear el JSON" + err);
           }
@@ -41,7 +38,7 @@ export default function Episode() {
     } else {
       setData(JSON.parse(ls.get(`episode-${id}-${episodeid}`)));
     }
-  }, [URL_API, LOCALSTORAGE_EXPIRATION_TIME, id, episodeid]);
+  }, [LOCALSTORAGE_EXPIRATION_TIME, id, episodeid]);
 
   const getURLonClick = (id, url) => {
     ls.set(`idCurrentPlay`, id);

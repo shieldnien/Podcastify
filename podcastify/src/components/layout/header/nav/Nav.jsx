@@ -15,18 +15,18 @@ export default function Nav() {
         </div>
         <div>
           <Link
-            to="/comments"
-            className="font-semibold text-lg text-white tracking-tight"
-          >
-            Comentarios
-          </Link>
-        </div>
-        <div>
-          <Link
             to="/login"
             className="font-semibold text-lg text-white tracking-tight"
           >
             Entrar
+          </Link>
+        </div>
+        <div>
+          <Link
+            to="/comments"
+            className="font-semibold text-lg text-white tracking-tight"
+          >
+            Comentarios
           </Link>
         </div>
       </nav>
