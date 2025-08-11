@@ -42,49 +42,42 @@ export default function Episodes(props) {
 
   return (
     <>
-      <div className="h-fit max-h-screen text-center mx-auto rounded-lg shadow-lg bg-gray-100 animate__animated animate__fadeInLeft">
+      <div className="h-fit max-h-screen text-center mx-auto rounded-2xl shadow-2xl bg-gradient-to-br from-indigo-700 via-fuchsia-700 to-purple-800 p-6 animate__animated animate__fadeInLeft border-2 border-fuchsia-700/30">
         <figure>
           <img
-            className="w-fit m-auto rounded-full p-2"
+            className="w-32 h-32 m-auto rounded-full border-4 border-fuchsia-400 shadow-lg object-cover"
             src={props.imImg}
             alt="Foto de portada del podcast"
-          ></img>
+          />
         </figure>
-        <p className="text-2xl font-bold p-2 m-2 border-y border-gray-300">
-          <span>{props.imArtist}</span> by <span>{props.imName}</span>
+        <p className="text-2xl font-extrabold text-white p-2 m-2 border-y border-fuchsia-400/40">
+          <span>{props.imArtist}</span> <span className="text-fuchsia-200 font-light">by</span> <span>{props.imName}</span>
         </p>
-        <p className="p-2 m-4">{props.summary}</p>
+        <p className="p-2 m-4 text-fuchsia-100 text-base italic">{props.summary}</p>
       </div>
-      <div className="h-4/6 flex flex-col max-h-screen bg-gray-500 bg-opacity-50">
-        <div className="text-center border m-2 border-gray-300 bg-gray-100 rounded shadow-lg">
-          <h1 className="text-xl m-2">
-            Episodios: <span className="font-bold">{data.resultCount}</span>
+      <div className="h-4/6 flex flex-col max-h-screen bg-white/10 rounded-2xl shadow-xl mt-6">
+        <div className="text-center border m-2 border-fuchsia-400/30 bg-white/10 rounded-xl shadow">
+          <h1 className="text-xl m-2 text-white">
+            Episodios: <span className="font-bold text-fuchsia-300">{data.resultCount}</span>
           </h1>
         </div>
-        <div className="rounded-lg h-5/6  overflow-auto overscroll-contain hover:overflow-y-scroll m-2 text-white text-xl font-light animate__animated animate__fadeInRight animate__delay-1s">
+        <div className="rounded-2xl h-5/6 overflow-auto overscroll-contain hover:overflow-y-scroll m-2 text-white text-lg font-light animate__animated animate__fadeInRight animate__delay-1s">
           {Object.values(data).map((o) => {
             return (
-              <>
-              <ul>
-              {Object.values(o).map((ch,index) => {
+              <ul key={o.collectionId} className="list-none">
+                {Object.values(o).map((ch, index) => {
                   return (
-                    <>
-                    <li className="p-2 m-2 overflow-hidden">
-                    <Link
-                          key={index}
-                          className="whitespace-nowrap p-2 m-2 shadow-lg bg-blue-500 rounded-lg border border-black visited:bg-green-900"
-                          to={`/podcasts/${props.id}/episode/${ch.trackId}`}
-                        >
-                          {ch.trackName}
-                        </Link>
+                    <li key={ch.trackId || index} className="p-2 m-2">
+                      <Link
+                        className="block w-full text-left px-5 py-3 rounded-xl bg-gradient-to-r from-fuchsia-600 to-indigo-600 text-white font-semibold shadow-lg border border-fuchsia-400/30 hover:scale-105 hover:bg-fuchsia-700/80 transition-all duration-150 truncate"
+                        to={`/podcasts/${props.id}/episode/${ch.trackId}`}
+                      >
+                        {ch.trackName}
+                      </Link>
                     </li>
-                        
-                    </>
                   );
                 })}
               </ul>
-                
-              </>
             );
           })}
         </div>

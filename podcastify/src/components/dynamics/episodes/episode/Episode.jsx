@@ -46,7 +46,8 @@ export default function Episode() {
   const getURLonClick = (id, url) => {
     ls.set(`idCurrentPlay`, id);
     ls.set(`currentPlay`, url);
-    console.log(ls.get(`idCurrentPlay`), ls.get(`currentPlay`));
+    // Dispara un evento personalizado para notificar al Footer
+    window.dispatchEvent(new Event('storage'));
   };
 
   return (
@@ -59,34 +60,33 @@ export default function Episode() {
                 if (ch.trackId === parseInt(episodeid)) {
                   return (
                     <>
-                      <div className="h-fit mx-4 mt-2 text-center rounded-lg overflow-hidden shadow-lg bg-gray-100 animate__animated animate__fadeInLeft">
+                      <div className="h-fit mx-4 mt-2 text-center rounded-2xl overflow-hidden shadow-2xl bg-gradient-to-br from-indigo-700 via-fuchsia-700 to-purple-800 animate__animated animate__fadeInLeft border-2 border-fuchsia-700/30 p-6">
                         <figure>
                           <img
-                            className="w-48 m-auto rounded-full p-2"
+                            className="w-40 h-40 m-auto rounded-full border-4 border-fuchsia-400 shadow-lg object-cover"
                             src={ch.artworkUrl600}
                             alt="Foto de portada del podcast"
-                          ></img>
+                          />
                         </figure>
-                        <p className="p-2 text-2xl font-bold border-y border-gray-300">
-                          <span>{ch.artistName}</span> by{" "}
-                          <span>{ch.collectionName}</span>
+                        <p className="p-2 text-2xl font-extrabold text-white border-y border-fuchsia-400/40">
+                          <span>{ch.artistName}</span> <span className="text-fuchsia-200 font-light">by</span> <span>{ch.collectionName}</span>
                         </p>
                       </div>
-                      <div className="max-w-4xl h-5/6 md:h-full overflow-y-auto m-2 bg-gray-100 rounded overflow-hidden shadow-lg">
-                        <p className="p-2 block font-bold text-lg">
+                      <div className="max-w-4xl h-5/6 md:h-full overflow-y-auto m-2 bg-white/10 rounded-2xl overflow-hidden shadow-xl p-6">
+                        <p className="p-2 block font-bold text-xl text-fuchsia-200">
                           {ch.trackName}
                         </p>
-                        <p className="px-6 py-2 border-t border-gray-300">
+                        <p className="px-6 py-2 border-t border-fuchsia-400/20 text-white/90">
                           {ch.description}
                         </p>
-                        <div className="text-center">
+                        <div className="text-center mt-4">
                           <button
-                            className="w-12 h-12 relative"
+                            className="px-6 py-3 rounded-xl bg-gradient-to-r from-fuchsia-600 to-indigo-600 text-white font-semibold shadow-lg hover:scale-105 transition-transform text-lg"
                             onClick={() =>
                               getURLonClick(ch.trackId, ch.episodeUrl)
                             }
                           >
-                            Click!
+                            Reproducir episodio
                           </button>
                         </div>
                       </div>

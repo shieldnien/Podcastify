@@ -33,61 +33,57 @@ function App() {
   }, []);
 
   return (
-    <>
-    <video className="w-full"
-    autoPlay muted loop id="bg-video">
-      <source src={video} type="video/mp4"/>
-    </video>
-      {!isLoggedIn && (
-        <div className="overflow-y-scroll h-screen">
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<Nav />}>
-                <Route index element={<Home />} />
-                <Route path="/podcasts/:id" element={<Podcast />} />
-                <Route
-                  path="/podcasts/:id/episode/:episodeid"
-                  element={<Episode />}
-                />
-                <Route path="/login" element={<Login />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/comments" element={<Comments />} />
-                <Route path="*" element={<NotFound />} />
-              </Route>
-            </Routes>
-          </BrowserRouter>
-          <Footer />
-        </div>
-      )}
-      {isLoggedIn && 
-        (rol === 'su' || 
-        rol === 'admin' ||
-        rol === 'mod' || 
-        rol === 'user') && (
-        <div className="overflow-y-scroll h-screen">
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<NavPrivada rol={rol}/>}>
-                <Route index element={<Home />} />
-                <Route path="/podcasts/:id" element={<Podcast />} />
-                <Route
-                  path="/podcasts/:id/episode/:episodeid"
-                  element={<Episode />}
-                />
-                <Route path="/login" element={<Login />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/comments" element={<Comments />} />
-                <Route path="/protected" element={<Protected />} />
-                <Route path="*" element={<NotFound />} />
-              </Route>
-            </Routes>
-          </BrowserRouter>
-          <Footer />
-        </div>
-      )}
-    </>
+    <div className="relative min-h-screen font-sans bg-gradient-to-br from-indigo-900 via-purple-900 to-gray-900 overflow-hidden">
+      {/* Video de fondo con overlay */}
+      <video className="absolute top-0 left-0 w-full h-full object-cover opacity-30 z-0" autoPlay muted loop id="bg-video">
+        <source src={video} type="video/mp4" />
+      </video>
+      <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-indigo-900/60 to-fuchsia-900/60 z-10 pointer-events-none" />
+      <div className="relative z-20 min-h-screen flex flex-col">
+        {!isLoggedIn && (
+          <div className="flex-1 flex flex-col">
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<Nav />}>
+                  <Route index element={<Home />} />
+                  <Route path="/podcasts/:id" element={<Podcast />} />
+                  <Route path="/podcasts/:id/episode/:episodeid" element={<Episode />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/comments" element={<Comments />} />
+                  <Route path="*" element={<NotFound />} />
+                </Route>
+              </Routes>
+            </BrowserRouter>
+            <Footer />
+          </div>
+        )}
+        {isLoggedIn && (rol === 'su' || rol === 'admin' || rol === 'mod' || rol === 'user') && (
+          <div className="flex-1 flex flex-col">
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<NavPrivada rol={rol} />}>
+                  <Route index element={<Home />} />
+                  <Route path="/podcasts/:id" element={<Podcast />} />
+                  <Route path="/podcasts/:id/episode/:episodeid" element={<Episode />} />
+                  <Route path="/login" element={<Login />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/dashboard" element={<Dashboard />} />
+                  <Route path="/comments" element={<Comments />} />
+                  <Route path="/protected" element={<Protected />} />
+                  <Route path="*" element={<NotFound />} />
+                </Route>
+              </Routes>
+            </BrowserRouter>
+            <Footer />
+          </div>
+        )}
+        <footer className="py-4 text-center text-gray-400 text-xs bg-transparent mt-auto">
+          © {new Date().getFullYear()} Podcastify. Todos los derechos reservados.
+        </footer>
+      </div>
+    </div>
   );
 }
 

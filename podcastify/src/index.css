@@ -2,12 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;900&display=swap');
+
 body {
-  font-family: 'Roboto', sans-serif;
-  background-color: black;
-  /* background-image: url('./assets/Wave.svg'); */
-  background-size: auto;
+  font-family: 'Poppins', 'Inter', Arial, sans-serif;
+  background: #18181b;
+  color: #fff;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+#root {
+  min-height: 100vh;
+}
+
+/* Tailwind se encarga de la mayoría de los estilos. Puedes agregar utilidades personalizadas aquí si lo necesitas. */
 
 #bg-video {
   z-index: -1;
