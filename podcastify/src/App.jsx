@@ -2,7 +2,6 @@ import "./App.css";
 
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import video from './assets/loop.mp4';
 
 import Nav from "./components/layout/header/nav/Nav";
 import Home from "./components/static/home/Home";
@@ -35,9 +34,6 @@ function App() {
   return (
     <div className="relative min-h-screen font-sans bg-gradient-to-br from-indigo-900 via-purple-900 to-gray-900 overflow-hidden">
       {/* Video de fondo con overlay */}
-      <video className="absolute top-0 left-0 w-full h-full object-cover opacity-30 z-0" autoPlay muted loop id="bg-video">
-        <source src={video} type="video/mp4" />
-      </video>
       <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-indigo-900/60 to-fuchsia-900/60 z-10 pointer-events-none" />
       <div className="relative z-20 min-h-screen flex flex-col">
         {!isLoggedIn && (
